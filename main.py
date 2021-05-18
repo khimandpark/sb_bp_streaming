@@ -67,9 +67,10 @@ while True:
             print('blackpink down')
 
     # 트위터 데이터 가져오기 
-    if int(seconds) % 120 == 0:
+    if int(seconds) % 10 == 0:
         user = api.get_user(TWITTER_ACCOUNT)
         twit_follower_cnt = user.followers_count
+        print(twit_follower_cnt)
 
 
     makeRectText(POSITIONS[0][0], POSITIONS[0][1], insta_follower_cnt, 48)
@@ -79,8 +80,6 @@ while True:
     if int(prv_seconds * 5) != int(seconds * 5):
         insta_follower_cnt += random.choice([0]*5 + list(range(0, 2)))
 
-    if int(prv_seconds * 5) != int(seconds * 5):
-        twit_follower_cnt += random.choice([0]*50 + list(range(0, 2)))
     
     if bp_prior_subs < bp_subs:
         bp_prior_subs = bp_subs
