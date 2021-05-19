@@ -6,6 +6,7 @@ import instaloader
 import urllib.request
 from settings import *
 
+
 def makeRectText(x, y, message, size):
     FONT = pygame.font.Font(VIEW_FONT, size)
     text_Title = FONT.render('{:,}'.format(int(message)), True, WHITE)
@@ -14,6 +15,7 @@ def makeRectText(x, y, message, size):
     text_Rect.x = x
     text_Rect.y = y
     screen.blit(text_Title, text_Rect)
+
 
 def request_Youtube_API():
     channel_data = urllib.request.urlopen(YOUTUBE_CHANNEL_URL.format(YOUTUBE_ID, YOUTUBE_KEY)).read()
@@ -50,7 +52,6 @@ while True:
     if event.type == pygame.QUIT:
         break
 
-
     # 인스타 데이터 가져오기
     if int(seconds) % 600 == 0:
         profile = instaloader.Profile.from_username(insta.context, INSTA_ID)
@@ -72,15 +73,13 @@ while True:
         twit_follower_cnt = user.followers_count
         print(twit_follower_cnt)
 
-
-    makeRectText(POSITIONS[0][0], POSITIONS[0][1], insta_follower_cnt, 48)
-    makeRectText(POSITIONS[1][0], POSITIONS[1][1], bp_prior_subs, 48)
-    makeRectText(POSITIONS[2][0], POSITIONS[2][1], twit_follower_cnt, 48)
+    makeRectText(POSITIONS[0][0], POSITIONS[0][1], insta_follower_cnt, FONT_SIZE)
+    makeRectText(POSITIONS[1][0], POSITIONS[1][1], bp_prior_subs, FONT_SIZE)
+    makeRectText(POSITIONS[2][0], POSITIONS[2][1], twit_follower_cnt, FONT_SIZE)
 
     if int(prv_seconds * 5) != int(seconds * 5):
         insta_follower_cnt += random.choice([0]*5 + list(range(0, 2)))
 
-    
     if bp_prior_subs < bp_subs:
         bp_prior_subs = bp_subs
 
