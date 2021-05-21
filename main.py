@@ -68,10 +68,14 @@ while True:
             print('blackpink down')
 
     # 트위터 데이터 가져오기 
-    if int(seconds) % 10 == 0:
-        user = api.get_user(TWITTER_ACCOUNT)
-        twit_follower_cnt = user.followers_count
-        print(twit_follower_cnt)
+    if int(seconds) % 20 == 0:
+        try:
+            user = api.get_user(TWITTER_ACCOUNT)
+            twit_follower_cnt = user.followers_count
+            print(twit_follower_cnt)
+        except tweepy.TweepError as e:
+            print("Error code: {} with message: {}".format(e.api_code, e.message[0]['message']))
+            
 
     makeRectText(POSITIONS[0][0], POSITIONS[0][1], insta_follower_cnt, FONT_SIZE)
     makeRectText(POSITIONS[1][0], POSITIONS[1][1], bp_prior_subs, FONT_SIZE)
