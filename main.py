@@ -41,7 +41,7 @@ insta = instaloader.Instaloader()
 # api = tweepy.API(auth)
 
 bp_subs = request_Youtube_API()
-bp_prior_subs = str(int(bp_subs) + 9336)
+bp_prior_subs = str(int(bp_subs) + 4100)
 cnt = 1
 
 b_cnt = 0
@@ -49,9 +49,9 @@ b_cnt = 0
 while True:
     seconds = (pygame.time.get_ticks()-start_ticks)/1000
 
-    # if int(seconds * 100) % 1000 == 0:
-    #     background_image = pygame.image.load(BACKGROUNDS[b_cnt % 4])
-    #     b_cnt += 1
+    if int(prv_seconds) != int(seconds) and cnt == 9:
+        background_image = pygame.image.load(BACKGROUNDS[b_cnt % 4])
+        b_cnt += 1
 
     screen.blit(background_image, (0, 0))
 
